@@ -3,13 +3,6 @@ from sqlalchemy.sql.schema import Column
 from sqlalchemy.orm import relationship
 from .database import Base
 
-class Job(Base):
-    __tablename__ = 'jobs'
-
-    id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    description = Column(String, nullable=False)
-
 class Event(Base):
     __tablename__ = 'event'
 

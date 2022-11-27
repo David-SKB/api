@@ -1,10 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class CreateJobRequest(BaseModel):
-    title: str
-    description: str
-
 class CreateEventRequest(BaseModel):
     event_title: str
     event_description: str

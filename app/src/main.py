@@ -6,7 +6,7 @@ from .schemas import CreateEventRequest, UpdateEventRequest
 from sqlalchemy.orm import Session
 from sqlalchemy import null, Boolean
 from .database import get_db
-from .models import Job, Event
+from .models import Event
 
 app = FastAPI()
 
@@ -68,7 +68,6 @@ def delete(id: int, db: Session = Depends(get_db)):
 
 @app.put("/event")
 def put_by_id(id: int, event_title: str, db: Session = Depends(get_db)):
-    #record = Session.ex
     event = db.query(Event).filter(Event.id == id).first()
     if (event == None):
         return { "success": False }
@@ -77,7 +76,6 @@ def put_by_id(id: int, event_title: str, db: Session = Depends(get_db)):
 
 @app.put("/eventt")
 def put_by_id(id: int, details: UpdateEventRequest, db: Session = Depends(get_db)):
-    #record = Session.ex
     event = db.query(Event).filter(Event.id == id).first()
     if (event == None):
         return { "success": False }
@@ -87,9 +85,7 @@ def put_by_id(id: int, details: UpdateEventRequest, db: Session = Depends(get_db
     event.end_date=details.end_date
     event.start_time=details.start_time
     event.end_time=details.end_time
-    #event.is_full_day_event=Boolean(1)
     event.is_full_day_event = True if details.is_full_day_event else False
-    #event.is_reccuring=details.is_reccuring,
     event.is_reccuring = True if details.is_reccuring else False
     event.created_by=details.created_by
     event.created_date=details.created_date
