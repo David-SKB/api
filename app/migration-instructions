@@ -1,0 +1,6 @@
+make run-db
+alembic init alembic
+alembic revision -m "init"
+alembic downgrade -1
+alembic upgrade head
+uvicorn src.main:app --reload
